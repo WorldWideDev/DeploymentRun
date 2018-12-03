@@ -1,0 +1,25 @@
+@model Order
+<h1>Order a Pizza!</h1>
+<form asp-controller="Order" asp-action="Create" method="POST">
+    <div class="form-group">
+        <span asp-validation-for="Quantity"></span>
+        <label asp-for="Quantity"></label>
+        <input asp-for="Quantity">
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="Instructions"></span>
+        <label asp-for="Instructions"></label>
+        <textarea asp-for="Instructions"></textarea>
+    </div>
+    <div class="form-group">
+        <span asp-validation-for="PizzaId"></span>
+        <label asp-for="PizzaId"></label>
+        <select asp-for="PizzaId">
+        @foreach(var piz in ViewBag.Pizzas)
+        {
+            <option value="@piz.PizzaId">@piz.Name</option>
+        }
+        </select>
+    </div>
+    <input type="submit" value="Add Order">
+</form>

@@ -1,0 +1,33 @@
+@model List<Order>
+<h1>All Orders</h1>
+<hr>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>User</th>
+            <th>Pizza</th>
+            <th>Order Date</th>
+            <th>Instructions</th>
+            <th>Quanity</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var order in Model)
+    {
+        <tr>
+            <td>@order.User.FirstName</td>
+            <td>@order.Pizza.Name</td>
+            <td>@order.CreatedAt</td>
+            <td>@order.Instructions</td>
+            <td>@order.Quantity</td>
+        @if(ViewBag.UserId == order.UserId)
+        {
+            <td>DELETE</td>
+
+        }
+        </tr>
+    }
+    </tbody>
+    
+</table>

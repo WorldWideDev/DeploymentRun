@@ -1,0 +1,34 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Pizza>
+<h1>Pizza TIME</h1>
+<h5><a href="/pizza/new">Add a new pizza</a> | <a href="/orders/new">Order a pizza</a></h5>
+<hr>
+<h2>Check out our pizzas!</h2>
+<table class="table table-hovered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Chef</th>
+            <th>Description</th>
+            <th>Num Times Ordered</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach(var pizza in Model)
+    {
+        <tr>
+            <td><a href="/pizza/@pizza.PizzaId">@pizza.Name</a></td>
+            <td>@pizza.Chef.FirstName</td>
+            <td>@pizza.Description</td>
+            <td>@pizza.Orders.Count</td>
+            @if(pizza.Orders.Any(o => o.UserId == ViewBag.UserId))
+            {
+                <td>You ordered this!</td>
+            }
+        </tr>
+    }
+    </tbody>
+</table>

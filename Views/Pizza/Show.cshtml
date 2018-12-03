@@ -1,0 +1,14 @@
+@model Pizza
+<h2>Details for @Model.Name!</h2>
+<h3><strong>Chef: </strong>@Model.Chef.FirstName</h3>
+<p>
+    @Model.Description
+</p>
+<hr>
+<h3>These users have ordered @Model.Name</h3>
+@foreach(var order in Model.Orders)
+{
+    <p>@order.User.FirstName @order.User.LastName</p>
+}
+<hr>
+<a asp-controller="Pizza" asp-action="Edit" asp-route-pizzaId="@Model.PizzaId">UPDATE this pizza</a>
